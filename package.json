@@ -37,5 +37,8 @@
       "GetFile": "components/GetFile.coffee",
       "PutFile": "components/PutFile.coffee"
     }
+  },
+  "scripts": {
+    "test": "grunt test"
   }
 }

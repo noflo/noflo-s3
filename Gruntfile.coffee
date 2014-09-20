@@ -7,7 +7,6 @@ module.exports = ->
     noflo_manifest:
       update:
         files:
-          'component.json': ['graphs/*', 'components/*']
           'package.json': ['graphs/*', 'components/*']
 
     # Automated recompilation and testing when developing
