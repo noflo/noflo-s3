@@ -2,7 +2,7 @@ noflo = require 'noflo'
 
 exports.getComponent = ->
   c = new noflo.Component
-  c.description = 'Upload a file to S3'
+  c.description = 'Download a file from S3'
   c.icon = 'cloud-download'
   c.inPorts.add 'key',
     datatype: 'string'
@@ -20,7 +20,7 @@ exports.getComponent = ->
   noflo.helpers.WirePattern c,
     in: 'key'
     params: 'client'
-    out: 'url'
+    out: 'out'
     async: true
     forwardGroups: true
   , (data, groups, out, callback) ->
