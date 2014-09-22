@@ -24,7 +24,7 @@ exports.getComponent = ->
     async: true
     forwardGroups: true
   , (data, groups, out, callback) ->
-    client.getFile data, (err, response) ->
+    c.params.client.getFile data, (err, response) ->
       return callback err if err
       out.send response
       do callback
