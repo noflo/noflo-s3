@@ -17,27 +17,17 @@
     "noflo": "^1.0.0"
   },
   "devDependencies": {
-    "coffee-script": "^1.10.0",
-    "grunt": "^1.0.1",
-    "grunt-coffeelint": "^0.0.16",
-    "grunt-mocha-test": "^0.13.2",
     "chai": "^4.1.2",
-    "mocha": "^4.0.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-noflo-manifest": "^0.1.12"
+    "coffeelint": "^2.0.7",
+    "coffeescript": "^2.0.2",
+    "mocha": "^4.0.0"
   },
   "keywords": [
     "noflo",
     "s3"
   ],
-  "noflo": {
-    "components": {
-      "CreateClient": "components/CreateClient.coffee",
-      "GetFile": "components/GetFile.coffee",
-      "PutFile": "components/PutFile.coffee"
-    }
-  },
   "scripts": {
-    "test": "grunt test"
+    "pretest": "coffeelint -f .coffeelint.json -r components",
+    "test": "mocha --require coffeescript/register -R spec -t 2000 spec/*.coffee"
   }
 }
