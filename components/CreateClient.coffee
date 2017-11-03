@@ -33,12 +33,12 @@ exports.getComponent = ->
     ]
     out: 'client'
     forwardGroups: true
-  , (data, groups, out) ->
+    async: true
+  , (data, groups, out, callback) ->
     client = knox.createClient
       key: c.params.key
       secret: c.params.secret
       bucket: data
       region: c.params.region
     out.send client
-
-  c
+    do callback

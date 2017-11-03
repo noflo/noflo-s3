@@ -2,7 +2,6 @@ noflo = require 'noflo'
 
 exports.getComponent = ->
   c = new noflo.Component
-  c.key = ""
   c.description = 'Upload a file to S3'
   c.icon = 'cloud-upload'
   c.inPorts.add 'path',
@@ -22,13 +21,8 @@ exports.getComponent = ->
   c.outPorts.add 'error',
     datatype: 'object'
 
-  # FIXME: enable WirePattern on key port once
-  # group logic on multiple ports has been fixed
-  c.inPorts.key.on 'data', (data) ->
-    c.key = data
-
   noflo.helpers.WirePattern c,
-    in: 'path'
+    in: ['path', 'key']
     params: 'client'
     out: 'url'
     async: true
@@ -36,8 +30,8 @@ exports.getComponent = ->
     forwardGroups: true
   , (data, ignoredgroups, out, callback) ->
 
-    key = c.key
-    path = data
+    key = data.key
+    path = data.path
     c.params.client.putFile path, key, (err, response) ->
       return callback err if err
       out.send c.params.client.http key
